@@ -24,7 +24,7 @@ namespace FridgeSensorAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords()
         {
-            return await _context.Records.ToListAsync();
+            return await _context.Records.OrderBy(record => (long)record.TimeStamp).ToListAsync();
         }
 
         // GET: api/Records/5

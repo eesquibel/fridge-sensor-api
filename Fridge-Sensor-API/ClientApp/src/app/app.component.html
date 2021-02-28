@@ -1,0 +1,16 @@
+<google-chart *ngIf="Data$ | async as Data"
+    [type]="LineChart"
+    title="Fridge Temperature"
+    [columns]="['Time', 'Humidity', 'Temperature']"
+    [data]="Data"
+    [dynamicResize]="true"
+    [options]="{
+        legend: { position: 'bottom' },
+        series: { '0': { targetAxisIndex: 0 }, '1': { targetAxisIndex: 1 } },
+        vAxes: { '0': { title: 'Humidity', minValue: 0, maxValue: 100 }, '1': { title: 'Temperature', minValue: -5 } }
+    }"
+    style="width: 100%;"
+    class="img-fluid"
+    [height]="400"
+>
+</google-chart>
