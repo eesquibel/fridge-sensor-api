@@ -17,7 +17,7 @@ namespace FridgeSensorAPI.Migrations
 
             modelBuilder.Entity("FridgeSensorAPI.Models.Record", b =>
                 {
-                    b.Property<ulong>("TimeStamp")
+                    b.Property<long>("TimeStamp")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("Humidity")

@@ -23,15 +23,17 @@ namespace FridgeSensorAPI
         {
             services.AddControllers().AddNewtonsoftJson();
 
+            string database = System.Environment.GetEnvironmentVariable("DATABASE") ?? "Records.db";
+
             services.AddDbContext<SensorContext>(options =>
             {
-                options.UseSqlite("Data Source=Records.db;");
+                options.UseSqlite($"Data Source={database};");
             });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/fridge-sensor";
             });
         }
 

@@ -24,7 +24,11 @@ namespace FridgeSensorAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords()
         {
-            return await _context.Records.OrderBy(record => (long)record.TimeStamp).ToListAsync();
+            long twentyFour = DateTimeOffset.UtcNow.AddDays(-1).ToUnixTimeSeconds();
+            return await _context.Records
+                .Where(record => record.TimeStamp >= twentyFour)
+                .OrderBy(record => (long)record.TimeStamp)
+                .ToListAsync();
         }
 
         // GET: api/Records/5
@@ -44,7 +48,7 @@ namespace FridgeSensorAPI.Controllers
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(ulong id, Record @record)
+        public async Task<IActionResult> PutRecord(long id, Record @record)
         {
             if (id != @record.TimeStamp)
             {
@@ -110,7 +114,7 @@ namespace FridgeSensorAPI.Controllers
             return NoContent();
         }
 
-        private bool RecordExists(ulong id)
+        private bool RecordExists(long id)
         {
             return _context.Records.Any(e => e.TimeStamp == id);
         }

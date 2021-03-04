@@ -14,6 +14,6 @@ namespace FridgeSensorAPI.Models
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [JsonProperty("z")]
-        public ulong TimeStamp { get; set; }
+        public long TimeStamp { get; set; }
     }
 }

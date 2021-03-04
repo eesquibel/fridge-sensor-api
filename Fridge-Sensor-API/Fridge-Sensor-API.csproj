@@ -22,4 +22,13 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ClientApp\dist\fridge-sensor\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Records.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
